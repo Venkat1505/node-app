@@ -10,12 +10,11 @@ pipeline {
                 sh "docker build . -t veparala/nodeapp:${DOCKER_TAG}"
             }
         }
-        stage('Dockerhub Push){
+        stage('Dockerhub Push'){
          withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
          sh "docker login -u veparala -p ${dockerHubPwd}"
          sh "docker push veparala/nodeapp:${DOCKER_TAG}"
          }
-
 
         }
        
